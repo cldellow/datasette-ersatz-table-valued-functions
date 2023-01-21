@@ -41,6 +41,22 @@ SELECT root FROM tbl_squares(10) WHERE square % 2 = 0 AND square < 50
 
 will emit 0, 2, 4, 6.
 
+The parameters to the function can come from a subselect, which could target
+any table and be arbitrarily complex:
+
+```sql
+SELECT root FROM tbl_squares((SELECT 10))
+```
+
+Unfortunately, you can't do more complex joins:
+
+```sql
+WITH xs AS (SELECT 10 AS x) SELECT root FROM tbl_squares(x), xs
+```
+
+Queries that aren't supported are passed as-is to SQLite, which will itself
+then reject them since no such table function is registered.
+
 ## Development
 
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
