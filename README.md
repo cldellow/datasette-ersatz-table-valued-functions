@@ -5,6 +5,10 @@
 [![Tests](https://github.com/cldellow/datasette-ersatz-table-valued-functions/workflows/Test/badge.svg)](https://github.com/cldellow/datasette-ersatz-table-valued-functions/actions?query=workflow%3ATest)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/cldellow/datasette-ersatz-table-valued-functions/blob/main/LICENSE)
 
+Three bad ideas in a trenchcoat.
+
+**ersatz** *(adj.)*: made or used as a substitute, typically an inferior one, for something else.
+
 Enable a limited form of table-valued functions.
 
 ## Installation
