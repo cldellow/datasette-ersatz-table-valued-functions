@@ -15,7 +15,27 @@ Install this plugin in the same environment as Datasette.
 
 ## Usage
 
-Usage instructions go here.
+Write a plugin that registers a table-valued function in the `startup` hook:
+
+```python
+from datasette import hookimpl
+from datasette_ersatz_table_valued_functions import create_table_function
+
+def tbl_squares(n):
+    return [(i, i*i) for i in range(n)]
+
+@hookimpl
+def startup():
+    create_table_function('tbl_squares', 1, tbl_squares, ['root', 'square'])
+```
+
+You can then query this in Datasette:
+
+```sql
+SELECT root FROM tbl_squares(10) WHERE square % 2 = 0 AND square < 50
+```
+
+will emit 0, 2, 4, 6.
 
 ## Development
 
