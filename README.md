@@ -5,11 +5,9 @@
 [![Tests](https://github.com/cldellow/datasette-ersatz-table-valued-functions/workflows/Test/badge.svg)](https://github.com/cldellow/datasette-ersatz-table-valued-functions/actions?query=workflow%3ATest)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/cldellow/datasette-ersatz-table-valued-functions/blob/main/LICENSE)
 
-Three bad ideas in a trenchcoat.
-
 **ersatz** *(adj.)*: made or used as a substitute, typically an inferior one, for something else.
 
-Enable a limited form of table-valued functions.
+Enable a limited form of table-valued functions. See also [https://github.com/cldellow/ersatz-table-valued-functions/](ersatz-table-valued-functions).
 
 ## Installation
 
@@ -48,7 +46,9 @@ any table and be arbitrarily complex:
 SELECT root FROM tbl_squares((SELECT 10))
 ```
 
-Unfortunately, you can't do more complex joins:
+You can do whatever with the output of this function -- join it, aggregate it, etc.
+
+What you can't do is use a join as the source of _input_ to the function:
 
 ```sql
 WITH xs AS (SELECT 10 AS x) SELECT root FROM tbl_squares(x), xs
