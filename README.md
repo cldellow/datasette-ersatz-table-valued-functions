@@ -7,7 +7,9 @@
 
 **ersatz** *(adj.)*: made or used as a substitute, typically an inferior one, for something else.
 
-Enable a limited form of table-valued functions. See also [https://github.com/cldellow/ersatz-table-valued-functions/](ersatz-table-valued-functions).
+Enable a limited form of table-valued functions.
+
+See also [ersatz-table-valued-functions](https://github.com/cldellow/ersatz-table-valued-functions/).
 
 ## Installation
 
