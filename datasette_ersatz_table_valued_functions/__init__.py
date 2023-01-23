@@ -10,27 +10,14 @@ def create_table_function(name, narg, func, column_names):
     mappings[name.upper()] = column_names
     all_functions.append((name, narg, func, column_names))
 
-original_execute = Database.execute
-async def patched_execute(
-    self,
-    sql,
-    params=None,
-    truncate=False,
-    custom_time_limit=None,
-    page_size=None,
-    log_sql_errors=True,
-):
-    return await original_execute(
-        self,
-        rewrite(sql, mappings),
-        params,
-        truncate,
-        custom_time_limit,
-        page_size,
-        log_sql_errors
-    )
+@hookimpl
+def rewrite_sql(fn, sql):
+    if fn == 'execute':
+        return rewrite(sql, mappings)
 
-Database.execute = patched_execute
+    # TOOD: also support execute_write* -- that requires changes in
+    # ersatz_table_valued_functions to support multi-statement SQL strings.
+    return sql
 
 @hookimpl
 def prepare_connection(conn, database):

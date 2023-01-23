@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-VERSION = "0.1"
+VERSION = "0.2"
 
 
 def get_long_description():
@@ -32,7 +32,7 @@ setup(
     version=VERSION,
     packages=["datasette_ersatz_table_valued_functions"],
     entry_points={"datasette": ["ersatz_table_valued_functions = datasette_ersatz_table_valued_functions"]},
-    install_requires=["datasette", "ersatz-table-valued-functions"],
+    install_requires=["datasette", "ersatz-table-valued-functions", "datasette-rewrite-sql"],
     extras_require={"test": ["pytest", "pytest-asyncio", "pytest-watch"]},
     python_requires=">=3.7",
 )
